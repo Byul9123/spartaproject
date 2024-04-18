@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{% block headcontent %}
+<h1 class="text-center mb-4">{{product.title}}</h1>
+{% endblock headcontent %}
+{%block content%}
+
+<div class="container mt-4">
+    {% if product.image %}
+    <div class="text-center mb-4">
+        <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.title }}">
+    </div>
+    {% endif %}
+
+    <div class="text-center mb-4">
+        <h5>{{ product.title }}</h5>
+        <p>{{ product.price }}만원</p>
+        <p>관심: {{ product.like_users.count }}개</p>
+        <p>{{ product.content }}</p>
+        <p>{{ product.created_at }}</p>
+    </div>
+    <div class="text-center mb-4">
+        <form action="{% url 'products:like' product.pk %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            {% if request.user in product.like_users.all %}
+            <input type="submit" class="btn btn-dark" value="관심 취소">
+            {% else %}
+            <input type="submit" class="btn btn-dark" value="관심">
+            {% endif %}
+        </form>
+    </div>
+
+    {% if request.user == product.author %}
+    <div class="text-center mb-4">
+        <form action="{% url 'products:delete' product.pk %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-dark" value="삭제">
+        </form>
+        <a href="{% url 'products:update' product.pk %}" class="btn btn-dark ml-2">수정</a>
+    </div>
+    {% endif %}
+
+</div>
+{%endblock%}

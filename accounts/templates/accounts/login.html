@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% block headcontent %}
+<h1 class="text-center mb-4">로그인</h1>
+{% endblock headcontent %}
+{% block content %}
+    <div class="cd-flex flex-column align-items-center mt-5">
+        <form action="" method="POST" class="custom-login-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">ID : </label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">PW : </label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="btn btn-dark">로그인</button>
+        </form>
+    </div>
+
+{% endblock %}

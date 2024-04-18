@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block headcontent %}
+<h1 class="text-center mb-4">BLACK MARKET</h1>
+{% endblock headcontent %}
+{%block content%}
+
+<div class="d-flex flex-column align-items-center mt-5">
+    <img src="{% static 'products/당근.png' %}" alt=""><br>
+    {%if request.user.is_authenticated%}
+    <div class="d-flex">
+        <a class="brn btn-dark me-2" href="{% url 'accounts:profile' username=request.user %}"><button type="button"
+                class="btn btn-dark">프로필</button>
+        </a>
+        <a class="brn btn-dark me-2" aria-current="page" href="{% url 'products:products' %}"><button type="button"
+                class="btn btn-dark">글목록</button>
+        </a>
+    </div>
+    {%else%}
+    <div class="d-flex">
+        <a class="brn btn-dark me-2" href="{% url 'accounts:signup' %}"><button type="button"
+                class="btn btn-dark">회원가입</button>
+        </a>
+        <a class="brn btn-dark me-2" aria-current="page" href="{% url 'accounts:login' %}"><button type="button"
+                class="btn btn-dark">로그인</button>
+        </a>
+    </div>
+    {%endif%}
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+img {
+    width: 200px;
+}
+
+
+
+.card-img-top {
+    max-height: 200px;  /* 원하는 높이로 조절 */
+    object-fit: cover;  /* 이미지 비율 유지 */
+}

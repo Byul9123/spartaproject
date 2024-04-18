@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{% block headcontent %}
+<h1 class="text-center mb-4">회원정보 수정하기</h1>
+{% endblock headcontent %}
+
+{%block content%}
+    <div class="cd-flex flex-column align-items-center mt-5">
+        <form action="{%url 'accounts:update' %}" method="POST" class="custom-update-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="email" class="form-label">Email : </label>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">First_name : </label>
+                {{ form.first_name }}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Last_name : </label>
+                {{ form.last_name }}
+            </div>
+            <button type="submit" class="btn btn-dark">수정</button>
+            <a href="{% url 'accounts:password' %}" class="btn btn-dark">비밀번호 변경</a>
+            <form action="{% url 'accounts:delete' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit"class="btn btn-dark" value="회원탈퇴">
+            </form>
+        </form>
+    </div>
+
+{%endblock%}

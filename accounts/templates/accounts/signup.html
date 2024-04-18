@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block headcontent %}
+<h1 class="text-center mb-4">회원가입</h1>
+{% endblock headcontent %}
+{% block content %}
+<div class="d-flex flex-column align-items-center mt-5">
+    <div class="form_list">
+
+        <form action="{% url 'accounts:signup' %}" method="POST" class="custom-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">ID  : </label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label for="password1" class="form-label">PW : </label>
+                {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+                <label for="password2" class="form-label">PW : </label>
+                {{ form.password2 }}
+            </div>
+            <button type="submit" class="btn btn-dark">가입</button>
+        </form>
+    </div>
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{% block headcontent %}
+<h1 class="text-center mb-4">수정하기</h1>
+{% endblock headcontent %}
+
+{% block content %}
+
+<div class="cd-flex flex-column align-items-center mt-5">
+    <form action="{%url 'products:update' product.pk %}" method="POST" class="cd-flex flex-column align-items-center mt-5">
+        {%csrf_token%}
+        <div class="card-img-top mb-2">
+            <label for="price" class="form-label">사진 : </label>
+            {{form.image}}
+        </div>
+        <div class="card-title mb-2">
+            <label for="tilte" class="form-label">제목 : </label>
+            {{form.title}}
+        </div>
+        <div class='card-title'>
+            <label for="price" class="form-label">가격 : </label>
+            {{ form.price }}만원
+
+        </div>
+        <div class="card-title">
+            <label for="content" class="form-label">내용 : </label>
+            {{ form.content }}
+        </div>
+            <input type="submit" class="btn btn-dark" value="수정">
+            
+            <a href="{%url 'products:detail' product.pk %}" class= "btn btn-dark">뒤로가기</a>
+        </form>
+    </div>
+    
+{%endblock %}
